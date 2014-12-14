@@ -40,16 +40,15 @@ median_activity_per_day <- summarise(total_activity_per_day, median_steps = medi
 
 
 ## What is the average daily activity pattern?
-```{r avg_daily_activity}
+```{r avg_daily_activity, results='hide'}
 steps_per_interval <- group_by(activity, interval)
 mean_steps_per_interval <- summarise(steps_per_interval,mean_steps = mean(steps, na.rm=TRUE))
-
 ggplot(mean_steps_per_interval, aes(interval, mean_steps))+labs(title="Average daily activity", x="Time(min)", y="steps")+geom_line()
 mx <- max(mean_steps_per_interval$mean_steps, na.rm=TRUE)
-mean_steps_per_interval[mean_steps_per_interval$mean_steps == mx,]
+intv <- mean_steps_per_interval[mean_steps_per_interval$mean_steps == mx,"interval"]
 ```
 
-
+The interval with the max mean value is: **`r intv`** and the corresponding max value is: **`r mx`**
 
 
 

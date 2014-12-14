@@ -47,7 +47,6 @@ median_activity_per_day <- summarise(total_activity_per_day, median_steps = medi
 ```r
 steps_per_interval <- group_by(activity, interval)
 mean_steps_per_interval <- summarise(steps_per_interval,mean_steps = mean(steps, na.rm=TRUE))
-
 ggplot(mean_steps_per_interval, aes(interval, mean_steps))+labs(title="Average daily activity", x="Time(min)", y="steps")+geom_line()
 ```
 
@@ -55,15 +54,10 @@ ggplot(mean_steps_per_interval, aes(interval, mean_steps))+labs(title="Average d
 
 ```r
 mx <- max(mean_steps_per_interval$mean_steps, na.rm=TRUE)
-mean_steps_per_interval[mean_steps_per_interval$mean_steps == mx,]
+intv <- mean_steps_per_interval[mean_steps_per_interval$mean_steps == mx,"interval"]
 ```
 
-Source: local data frame [1 x 2]
-
-  interval mean_steps
-1      835   206.1698
-
-
+The interval with the max mean value is: **835** and the corresponding max value is: **206.1698113**
 
 
 
